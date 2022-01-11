@@ -16,7 +16,7 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:$HOME/go/bin
 export GOROOT="/usr/lib/go"
-export GOPATH=$GOROOT
+export GOPATH=$HOME/Workspace/go
 export VDPAU_DRIVER=va_gl
 export LIBVA_DRIVER_NAME=iHD
 
