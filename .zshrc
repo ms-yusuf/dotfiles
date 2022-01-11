@@ -16,7 +16,7 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:$HOME/go/bin
 export GOROOT="/usr/lib/go"
-export GOPATH=$HOME/go
+export GOPATH=$GOROOT
 export VDPAU_DRIVER=va_gl
 export LIBVA_DRIVER_NAME=iHD
 
@@ -59,5 +59,8 @@ export EDITOR='vim'
 alias rm='echo "Escape using backslash" '
 alias mv='mv -i'
 alias xclip='xclip -selection clipboard'
+alias restartplasma='kquitapp5 plasmashell && kstart plasmashell'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 powerline-daemon -q
 . /usr/share/powerline/bindings/zsh/powerline.zsh
