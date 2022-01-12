@@ -14,7 +14,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/Workspace/go/bin
 export GOROOT="/usr/lib/go"
 export GOPATH=$HOME/Workspace/go
 export VDPAU_DRIVER=va_gl
@@ -59,7 +59,10 @@ export EDITOR='vim'
 alias rm='echo "Escape using backslash" '
 alias mv='mv -i'
 alias xclip='xclip -selection clipboard'
-alias restartplasma='kquitapp5 plasmashell && kstart plasmashell'
+alias restart-plasma='kquitapp5 plasmashell && kstart plasmashell'
+alias restart-eDP1='sudo xrandr --output eDP1 --off && sudo xrandr --output eDP1 --auto'
+alias restart-eDP1-right-of-HDMI2='sudo xrandr --output eDP1 --off && sudo xrandr --output eDP1 --auto --right-of HDMI2'
+
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 powerline-daemon -q
