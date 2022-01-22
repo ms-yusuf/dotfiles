@@ -59,7 +59,7 @@ export EDITOR='vim'
 alias rm='echo "Escape using backslash" '
 alias mv='mv -i'
 alias xclip='xclip -selection clipboard'
-alias restart-plasma='kquitapp5 plasmashell && kstart plasmashell'
+alias restart-plasma='kquitapp5 plasmashell && kstart5 plasmashell'
 alias restart-eDP1='sudo xrandr --output eDP1 --off && sudo xrandr --output eDP1 --auto'
 alias restart-eDP1-right-of-HDMI2='sudo xrandr --output eDP1 --off && sudo xrandr --output eDP1 --auto --right-of HDMI2'
 
