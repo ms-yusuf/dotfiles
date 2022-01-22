@@ -67,6 +67,8 @@ set hlsearch
 set mouse=a
 set ignorecase
 set smartcase
+set clipboard=unnamedplus
+set mouse=a
 
 
 " Theme configuration
