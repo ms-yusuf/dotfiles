@@ -71,6 +71,8 @@ set ignorecase
 set smartcase
 set clipboard=unnamedplus
 set mouse=a
+set wildmenu
+set wildmode=full
 
 
 " Theme configuration
