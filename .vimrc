@@ -17,6 +17,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'takac/vim-hardtime'
 Plugin 'tpope/vim-fugitive'
+Plugin 'romainl/vim-cool'
+Plugin 'qxxxb/vim-searchhi'
 
 " Programming Support
 Plugin 'sheerun/vim-polyglot'
