@@ -22,6 +22,7 @@ Plugin 'qxxxb/vim-searchhi'
 
 " Programming Support
 Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-surround'
 " Plugin 'dense-analysis/ale'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'jiangmiao/auto-pairs'
@@ -73,7 +74,6 @@ set clipboard=unnamedplus
 set mouse=a
 set wildmenu
 set wildmode=full
-
 
 " Theme configuration
 set termguicolors
@@ -140,7 +140,7 @@ nmap <C-k> gcc
 
 " Autostart
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
