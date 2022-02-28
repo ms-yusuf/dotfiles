@@ -1,0 +1,25 @@
+conky.config = {
+    background = true,
+    font = 'Fantasque Sans Mono:size=10',
+    use_xft = true,
+    xftalpha = 0.5,
+    total_run_times = 0,
+    own_window = true,
+    own_window_transparent = true,
+    own_window_type = 'override',
+    own_window_class = 'Conky',
+    own_window_argb_visual = true,
+    own_window_argb_value = 255,
+    double_buffer = true,
+    draw_borders = false,
+    gap_x = 1550,
+    gap_y = 150,
+    no_buffers = true,
+    use_spacer = 'none',
+    maximum_width = 400,
+    minimum_height = 950,
+};
+
+conky.text = [[
+${offset 500}${image /home/shedder/.config/conky/bg.png -s 384x932}
+]];
