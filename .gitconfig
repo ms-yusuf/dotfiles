@@ -1,0 +1,10 @@
+[user]
+	mail = ms.yusuf@outlook.co.id
+	name = Muhammad Sulaiman Yusuf
+	email = ms.yusuf@outlook.co.id
+[credential]
+	helper = store
+[alias]
+	uncommit = "reset HEAD~"
+[diff]
+	tool = gvimdiff
