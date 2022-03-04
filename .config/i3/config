@@ -227,6 +227,7 @@ gaps inner 15
 exec_always --no-startup-id feh --bg-scale --randomize /home/shedder/Pictures/Wallpapers/*
 exec_always --no-startup-id picom --config /home/shedder/.config/picom/picom.conf -bc
 exec --no-startup-id "konsole"
+exec_always --no-startup-id /home/shedder/.config/autostart-scripts/conky_startup.sh
 
 # Additional bindings
 bindsym $mod+x exec --no-startup-id qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.activateLauncherMenu
