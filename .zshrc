@@ -14,7 +14,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PATH=$PATH:$HOME/Workspace/go/bin
+export PATH=$PATH:$HOME/Workspace/go/bin:$HOME/./config/scripts
 export GOROOT="/usr/lib/go"
 export GOPATH=$HOME/Workspace/go
 export VDPAU_DRIVER=va_gl
@@ -34,6 +34,7 @@ plugins=(
   dotenv
   zsh-autosuggestions
   fzf
+  k
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -63,6 +64,3 @@ alias restart-plasma='kquitapp5 plasmashell && kstart5 plasmashell'
 alias restart-eDP1='sudo xrandr --output eDP1 --off; sleep 1; sudo xrandr --output eDP1 --auto --brightness 0.7'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-powerline-daemon -q
-. /usr/share/powerline/bindings/zsh/powerline.zsh
