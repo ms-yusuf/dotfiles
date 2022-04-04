@@ -8,3 +8,7 @@
 	uncommit = "reset HEAD~"
 [diff]
 	tool = gvimdiff
+[color]
+	interactive = true
+	branch = true
+	status = true
