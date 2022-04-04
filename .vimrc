@@ -6,7 +6,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Utility
-Plugin 'powerline/powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
@@ -17,7 +18,10 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'takac/vim-hardtime'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-abolish'
 Plugin 'romainl/vim-cool'
+" Plugin 'vim-scripts/mru.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'qxxxb/vim-searchhi'
 
 " Programming Support
@@ -35,15 +39,19 @@ Plugin 'luochen1990/rainbow'
 " Theme
 Plugin 'Badacadabra/vim-archery'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'haishanh/night-owl.vim'
 
 " Golang Support
 " Plugin 'fatih/vim-go'
 
-call vundle#end()            
+" PHP Support
+Plugin 'phpactor/phpactor'
+call vundle#end()
 
 " Basic configuration
-filetype plugin indent on    
-syntax on
+filetype plugin indent on
+" syntax on
+syntax enable
 set nowrap
 set encoding=utf8
 set showtabline=2
@@ -55,14 +63,14 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-set number 
+set number
 :augroup numbertoggle
 :  autocmd!
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
-set tabstop=8
-set shiftwidth=8
+set tabstop=4
+set shiftwidth=4
 set smarttab
 set cursorline
 set incsearch
@@ -78,10 +86,16 @@ set wildmode=full
 " Theme configuration
 set termguicolors
 set background=dark
-colorscheme archery
+colorscheme night-owl
+let g:airline_theme = 'archery'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Ctrlp configuration
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|\vendor'
+let g:ctrlp_cmd = 'CtrlPMixed'
+
 
 " NERDTree configuration
 let NERDTreeShowBookmarks = 1
@@ -90,6 +104,10 @@ let NERDTreeShowLineNumbers = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+" Vim-better-whitespace configuration
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
@@ -108,7 +126,7 @@ let g:tagbar_autoshowtag = 1
 let g:tagbar_position = 'botright vertical'
 
 " ALE configuration
-"let b:ale_fixers = ['prettier', 'eslint'] 
+"let b:ale_fixers = ['prettier', 'eslint']
 "let g:ale_completion_enabled = 0
 
 " Syntastic configuration
@@ -136,6 +154,10 @@ let g:session_verbose_messages = 0
 let g:hardtime_default_on = 1
 let g:hardtime_allow_different_key = 1
 
+" Vim-searchhi configuration
+let g:searchhi_clear_all_autocmds = 'InsertEnter'
+let g:searchhi_update_all_autocmds = 'InsertLeave'
+
 " Golang configuration
 " let g:go_def_mapping_enabled = 0
 
@@ -158,5 +180,3 @@ nmap <C-k> gcc
 " Autostart
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-
-
