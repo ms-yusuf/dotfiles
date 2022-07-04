@@ -16,7 +16,7 @@ conky.config = {
     default_outline_color = '#333333',
     alignment = 'top_left',
     gap_x = 1385,
-    gap_y = 25,
+    gap_y = 110,
     cpu_avg_samples = 2,
     net_avg_samples = 2,
     maximum_width = 800,
@@ -43,7 +43,7 @@ ${offset 160}${exec cat /etc/locale.conf | grep "LANG=" | cut -d"\"" -f2 | sed '
 ${voffset 270}
 ${offset 70} RAM : $memperc% ─┬───────────
 ${voffset -15}
-${offset 50}$mem/$memmax ${color #BEC8CB}${membar 5,50}${color} 
+${offset 50}$mem/$memmax ${color #BEC8CB}${membar 5,50}${color}
 
 # Battery
 ${voffset -15}

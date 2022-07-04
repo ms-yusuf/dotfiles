@@ -16,7 +16,7 @@ conky.config = {
     default_outline_color = '#333333',
     alignment = 'top_left',
     gap_x = 1750,
-    gap_y = 50,
+    gap_y = 125,
     cpu_avg_samples = 2,
     net_avg_samples = 2,
     maximum_width = 800,
@@ -30,31 +30,31 @@ conky.text = [[
 # LCD
 ${voffset 160}
 ${offset 65}┬─ ${exec lspci | grep VGA | awk 'NR==1{print $5, $9, $10, $11}'}
-${offset 65}└── Resolution : ${exec xdpyinfo | awk '/dimensions/{print $2}'} 
+${offset 65}└── Resolution : ${exec xdpyinfo | awk '/dimensions/{print $2}'}
 
 # System board
 ${font FuraCode Nerd Font:size=10}
 ${voffset 300}
 ${offset 20}┌──┬─ ${execi 1000 cat /proc/cpuinfo|grep 'model name'|sed -e 's/model name.*: //'|uniq|cut -c 1-36|sed 's/(R)//g'|sed 's/(TM)//g'|sed 's/     //g'}
-${offset 44}├ ${top name 1}  ${top cpu 1} 
+${offset 44}├ ${top name 1}  ${top cpu 1}
 ${offset 44}├ ${top name 2}  ${top cpu 2}
 ${offset 44}├ ${top name 3}  ${top cpu 3}
-${offset 44}└ ${top name 4}  ${top cpu 4} 
+${offset 44}└ ${top name 4}  ${top cpu 4}
 ${font}
 
 # Fan
 ${voffset -60}
 ${offset 65}┌─── Temperatures ────┐
-${offset 45}──┘${offset 45} Core0 < ${execi 5 sensors|grep 'Core 0'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C >${alignr}${offset -38}┤
-${offset 120} Core1 < ${execi 5 sensors|grep 'Core 1'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C >${alignr}${offset -38}┤
-${offset 122} ${exec sensors | grep "RPM" | cut -c14-25} ──────┘
+${offset 45}──┘${offset 45} Core0 < ${execi 5 sensors|grep 'Core 0'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C >${alignr}${offset -29}┤
+${offset 120} Core1 < ${execi 5 sensors|grep 'Core 1'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C >${alignr}${offset -29}┘
+## ${offset 122} ${exec sensors | grep "RPM" | cut -c14-25} ──────┘
 
 # WLAN
 ${voffset -22}
-${offset 55}─┬─── WLAN 
-${offset 65}├ SID : ${wireless_essid wlan0} 
-${offset 65}├ IP : 
-${offset 65}│${offset 15}${addr wlan0} 
+${offset 55}─┬─── WLAN
+${offset 65}├ SID : ${wireless_essid wlan0}
+${offset 65}├ IP :
+${offset 65}│${offset 15}${addr wlan0}
 ${offset 65}│${offset 15}${exec curl -s -4 icanhazip.com}
 ${offset 65}├ UP < ${color #BEC8CB}${upspeedgraph wlan 015,130 BCC3C3 BCC3C3}${color} >
 ${offset 65}├ ${totalup wlan0} | ${upspeed wlan0}/s
