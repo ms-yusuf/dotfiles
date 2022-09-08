@@ -56,11 +56,27 @@ bindkey  "^[[F"   end-of-line
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export EDITOR='vim'
+export CGO_ENABLED=0
+export DESKTOP_SESSION=plasma
+export NODE_OPTIONS="--max_old_space_size=8192"
 
-alias rm='echo "Escape using backslash" '
+alias rm='echo "Escape using backslash." '
+alias find='echo "Use fzf lah!"'
+alias grep='echo "Use rg u imbecile." '
+alias cat='echo "Use bat" '
+alias cd='echo "If you are already been there b4, then use z. Else, escape using backslash." '
+alias f='fuck'
 alias mv='mv -i'
 alias xclip='xclip -selection clipboard'
 alias restart-plasma='kquitapp5 plasmashell && kstart5 plasmashell'
 alias restart-eDP1='sudo xrandr --output eDP1 --off; sleep 1; sudo xrandr --output eDP1 --auto --brightness 0.7'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source /home/shedder/.config/broot/launcher/bash/br
+. /home/shedder/.config/z.sh
+eval $(thefuck --alias)
