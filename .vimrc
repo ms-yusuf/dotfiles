@@ -1,51 +1,78 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" Utility
+	" Utility
+" Status Line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" NERDTree
 Plugin 'preservim/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'preservim/tagbar'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'takac/vim-hardtime'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-abolish'
-Plugin 'romainl/vim-cool'
-" Plugin 'vim-scripts/mru.vim'
-Plugin 'ntpeters/vim-better-whitespace'
+" Search and Replace
 Plugin 'qxxxb/vim-searchhi'
+Plugin 'romainl/vim-cool'
+Plugin 'tpope/vim-abolish' " better search and replace
+" File Finder
+Plugin 'ctrlpvim/ctrlp.vim'
+" GIT
+Plugin 'tpope/vim-fugitive'
+Plugin 'APZelos/blamer.nvim'
+" Registers
+Plugin 'junegunn/vim-peekaboo'
+" etc
+Plugin 'preservim/tagbar'
+Plugin 'xolox/vim-misc' " required for xolox's plugins
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-reload'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'terryma/vim-smooth-scroll'
+Plugin 'roman/golden-ratio'
 
-" Programming Support
+	" Programming Support
+" Languages Pack
 Plugin 'sheerun/vim-polyglot'
-Plugin 'tpope/vim-surround'
-" Plugin 'dense-analysis/ale'
+" Syntax Checking
 Plugin 'vim-syntastic/syntastic'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-commentary'
+" Auto Complete
 Plugin 'neoclide/coc.nvim'
-Plugin 'ervandew/supertab'
+" Highlighter
+Plugin 'luochen1990/rainbow' " brackets
+" Golang Support
+Plugin 'fatih/vim-go'
+" PHP
+Plugin 'yaegassy/coc-intelephense'
+Plugin 'yaegassy/coc-blade'
+" Plugin 'jwalton512/vim-blade'
+" Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'phpactor/phpactor'
+" HTML, CSS
+Plugin 'neoclide/coc-html'
+Plugin 'neoclide/coc-css'
+Plugin 'ap/vim-css-color'
+Plugin 'mattn/emmet-vim'
+" Tags, brackets
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
+" etc
+Plugin 'tpope/vim-commentary'
+Plugin 'neoclide/coc-json'
 Plugin 'Yggdroot/indentLine'
-Plugin 'luochen1990/rainbow'
 
-" Theme
+	" Theme
 Plugin 'Badacadabra/vim-archery'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'haishanh/night-owl.vim'
+Plugin 'ghifarit53/tokyonight-vim'
+Plugin 'joshdick/onedark.vim'
+Plugin 'EdenEast/nightfox.nvim'
+Plugin 'romainl/Apprentice'
 
-" Golang Support
-" Plugin 'fatih/vim-go'
-
-" PHP Support
-Plugin 'phpactor/phpactor'
 call vundle#end()
 
 " Basic configuration
@@ -53,7 +80,7 @@ filetype plugin indent on
 " syntax on
 syntax enable
 set nowrap
-set encoding=utf8
+set encoding=utf-8
 set showtabline=2
 set laststatus=2
 set cmdheight=1
@@ -82,20 +109,25 @@ set clipboard=unnamedplus
 set mouse=a
 set wildmenu
 set wildmode=full
+set guifont=FiraCode\ Nerd\ Font\ Medium\ 14
 
-" Theme configuration
+" Theme & Status line configuration
 set termguicolors
 set background=dark
 colorscheme night-owl
 let g:airline_theme = 'archery'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
+" Cursor configuration
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 " Ctrlp configuration
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|\vendor'
-let g:ctrlp_cmd = 'CtrlPMixed'
-
+" let g:ctrlp_cmd = 'CtrlPMixed'
 
 " NERDTree configuration
 let NERDTreeShowBookmarks = 1
@@ -105,29 +137,87 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" Vim-better-whitespace configuration
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
 
-" Open the existing NERDTree on each new tab.
-" autocmd BufWinEnter * silent NERDTreeMirror
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
+
+" NERDTrees File highlighting only the glyph/icon
+" test highlight just the glyph (icons) in nerdtree:
+autocmd filetype nerdtree highlight haskell_icon ctermbg=none ctermfg=Red guifg=#ffa500
+autocmd filetype nerdtree highlight html_icon ctermbg=none ctermfg=Red guifg=#ffa500
+autocmd filetype nerdtree highlight go_icon ctermbg=none ctermfg=Red guifg=#ffa500
+
+autocmd filetype nerdtree syn match haskell_icon ## containedin=NERDTreeFlags
+" if you are using another syn highlight for a given line (e.g.
+" NERDTreeHighlightFile) need to give that name in the 'containedin' for this
+" other highlight to work with it
+autocmd filetype nerdtree syn match html_icon ## containedin=NERDTreeFlags,html
+autocmd filetype nerdtree syn match go_icon ## containedin=NERDTreeFlags
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+let g:NERDTreeGitStatusUseNerdFonts=1
+set conceallevel=3
+" let g:NERDTreeGitStatusConcealBrackets=1
+let g:webdevicons_enable_nerdtree=1
+let g:webdevicons_conceal_nerdtree_brackets=1
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
+" Vim-better-whitespace configuration
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
 " Tagbar configuration
 let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_position = 'botright vertical'
 
-" ALE configuration
-"let b:ale_fixers = ['prettier', 'eslint']
-"let g:ale_completion_enabled = 0
+" COC configuration
+let b:coc_disabled_sources = ['around', 'buffer' , 'file']
 
 " Syntastic configuration
 set statusline+=%#warningmsg#
@@ -138,9 +228,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Supertab configuration
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
 " Rainbow configuration
 let g:rainbow_active = 1
 
@@ -150,16 +237,9 @@ let g:session_autosave = 'yes'
 let g:session_autosave_to = 'default'
 let g:session_verbose_messages = 0
 
-" Vim-hardtime configuration
-let g:hardtime_default_on = 1
-let g:hardtime_allow_different_key = 1
-
 " Vim-searchhi configuration
 let g:searchhi_clear_all_autocmds = 'InsertEnter'
 let g:searchhi_update_all_autocmds = 'InsertLeave'
-
-" Golang configuration
-" let g:go_def_mapping_enabled = 0
 
 " Mapping
 noremap <Up> <NOP>
@@ -175,8 +255,23 @@ nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :NERDTreeFind<CR>
 nmap <F4> :TagbarToggle<CR>
 nmap <C-k> gcc
-" nnoremap <esc> :noh<return>
+" COC, tab trigger completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" COC, end tab trigger
+cmap w!! w !sudo tee % >/dev/null
+
+
 
 " Autostart
 autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" functions
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
