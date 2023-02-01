@@ -14,7 +14,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PATH=$PATH:$HOME/Workspace/go/bin:$HOME/./config/scripts
+export PATH=$PATH:$HOME/Workspace/go/bin:$HOME/./config/scripts:/usr/lib/jvm/default-runtime/bin/java
 export GOROOT="/usr/lib/go"
 export GOPATH=$HOME/Workspace/go
 export VDPAU_DRIVER=va_gl
@@ -35,6 +35,8 @@ plugins=(
   zsh-autosuggestions
   fzf
   k
+  zsh-syntax-highlighting
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -59,17 +61,20 @@ export EDITOR='vim'
 export CGO_ENABLED=0
 export DESKTOP_SESSION=plasma
 export NODE_OPTIONS="--max_old_space_size=8192"
+export TERM=xterm-256color
+
 
 alias rm='echo "Escape using backslash." '
-alias find='echo "Use fzf lah!"'
-alias grep='echo "Use rg u imbecile." '
-alias cat='echo "Use bat" '
-alias cd='echo "If you are already been there b4, then use z. Else, escape using backslash." '
+alias find='fzf'
+alias grep='rg'
+alias cat='bat'
+# alias cd='echo "If you are already been there b4, then use z. Else, escape using backslash." '
 alias f='fuck'
 alias mv='mv -i'
 alias xclip='xclip -selection clipboard'
 alias restart-plasma='kquitapp5 plasmashell && kstart5 plasmashell'
 alias restart-eDP1='sudo xrandr --output eDP1 --off; sleep 1; sudo xrandr --output eDP1 --auto --brightness 0.7'
+alias l='k -Ah'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 

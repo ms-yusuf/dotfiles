@@ -6,6 +6,7 @@
 	helper = store
 [alias]
 	uncommit = "reset HEAD~"
+	showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
 [diff]
 	tool = gvimdiff
 [color]
@@ -32,3 +33,5 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[safe]
+	directory = /mnt/data/Workspace (data)/archive/Integrasia/Source/ospro/nawakara-frontend

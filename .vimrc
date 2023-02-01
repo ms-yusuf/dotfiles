@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+let &t_ut=''
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -124,6 +125,11 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " Cursor configuration
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" Indent configuration
+" :hi SpecialKey ctermfg=grey guifg=grey70
+" set listchars=tab:¦\ ,trail:.,precedes:<,extends:>
+" set list
 
 " Ctrlp configuration
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|\vendor'
