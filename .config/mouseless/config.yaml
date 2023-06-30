@@ -1,15 +1,17 @@
 devices:
-# use evtest to find input device
-# keychron k2
-- "/dev/input/event20"
-baseMouseSpeed: 700.0
+- "/dev/input/event4"
+- "/dev/input/event14"
+- "/dev/input/by-id/usb-04d9_USB-HID_Keyboard-event-kbd"
+# - "/dev/input/by-id/usb-Keychron_Keychron_K6-event-kbd"
+startCommand: "xset r rate 250 35"
+baseMouseSpeed: 950.0
 baseScrollSpeed: 15.0
 layers:
 # the first layer is active at start
 - name: initial
   bindings:
-    # when tab is held and another key pressed, activate mouse layer
-    space: tap-hold-next space; toggle-layer mouse ; 500
+    # when space is held and another key pressed, activate mouse layer
+    space: tap-hold space; toggle-layer mouse ; 250
 - name: mouse
   # when true, keys that are not mapped keep their original meaning
   passThrough: true
@@ -23,6 +25,6 @@ layers:
     z: scroll up
     c: scroll down
     leftalt: speed 4.0
-    leftshift: speed 0.25
+    leftshift: speed 0.35
     q: button left
     e: button right

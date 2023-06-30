@@ -35,33 +35,52 @@ vim.opt.wildmode = "full"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
+
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+lvim.builtin.nvimtree.setup.renderer.icons.glyphs.git = { staged = "✓", untracked = "★" }
+
+lvim.plugins = {
+	{
+		"EdenEast/nightfox.nvim",
+		"chentoast/marks.nvim",
+		"f-person/git-blame.nvim",
+		"fatih/vim-go",
+		"folke/trouble.nvim",
+		"gennaro-tedesco/nvim-peekup",
+		"luukvbaal/statuscol.nvim",
+		"nacro90/numb.nvim",
+		"phaazon/hop.nvim",
+		"preservim/tagbar",
+		"rmagatti/auto-session",
+		"romainl/vim-cool",
+		"sindrets/diffview.nvim",
+		"sitiom/nvim-numbertoggle",
+		"tpope/vim-commentary",
+		"tpope/vim-surround",
+		"vim-scripts/SmartCase"
+	},
+}
+
 -- general
 lvim.log.level = "info"
-lvim.format_on_save = {
-	enabled = true,
-	pattern = "*.lua",
-	timeout = 1000,
-}
-lvim.transparent_window = true
+lvim.transparent_window = false
 
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<TAB>"] = ":BufferLineCycleNext<cr>"
-lvim.keys.normal_mode["<S-TAB>"] = ":BufferLineCyclePrev<cr>"
-lvim.keys.normal_mode["<F2>"] = ":NvimTreeToggle<cr>"
-lvim.keys.normal_mode["<F3>"] = ":NvimTreeFindFileToggle<cr>"
-lvim.keys.normal_mode["<F4>"] = ":TagbarToggle<cr>"
-lvim.keys.normal_mode["<F5>"] = ":GitBlameToggle<cr>"
-lvim.keys.normal_mode["<C-k>"] = ":Commentary<cr>"
-lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<cr>"
-lvim.keys.normal_mode["<C-w>"] = ":HopWord<cr>"
+lvim.keys.normal_mode["<TAB>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-TAB>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<F2>"] = ":NvimTreeToggle<CR>"
+lvim.keys.normal_mode["<F3>"] = ":NvimTreeFindFileToggle<CR>"
+lvim.keys.normal_mode["<F4>"] = ":TagbarToggle<CR>"
+lvim.keys.normal_mode["<F5>"] = ":GitBlameToggle<CR>"
+lvim.keys.normal_mode["<C-k>"] = ":Commentary<CR>"
+lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<CR>"
+lvim.keys.normal_mode["<C-s>"] = ":HopWord<CR>"
 
 -- -- Change theme settings
 lvim.colorscheme = "carbonfox"
 
--- After changing plugin config exit and reopen LunarVim, Run :PackerSync
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
@@ -72,7 +91,6 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.builtin.treesitter.auto_install = true
 lvim.builtin.lualine.style = "lvim"
 
-
 -- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
@@ -80,8 +98,11 @@ formatters.setup {
 	{
 		command = "prettier",
 		extra_args = { "--print-width", "100" },
-		filetypes = { "typescript", "typescriptreact" },
+		-- filetypes = { "typescript", "typescriptreact" },
 	},
+	{ command = "goimports", filetypes = { "go" } },
+	{ command = "gofumpt", filetypes = { "go" } },
+	{ command = "blade_formatter", filetype = { "php", "blade", "blade.php" } },
 }
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
@@ -92,28 +113,10 @@ linters.setup {
 	},
 }
 
-lvim.plugins = {
-	{
-		"EdenEast/nightfox.nvim",
-		"romainl/vim-cool",
-		"preservim/tagbar",
-		"tpope/vim-surround",
-		"tpope/vim-commentary",
-		"Yggdroot/indentLine",
-		"gennaro-tedesco/nvim-peekup",
-		"chentoast/marks.nvim",
-		"phaazon/hop.nvim",
-		"nacro90/numb.nvim",
-		"f-person/git-blame.nvim",
-		"lewis6991/gitsigns.nvim",
-		"sindrets/diffview.nvim",
-		"luukvbaal/statuscol.nvim",
-		"sitiom/nvim-numbertoggle",
-		"folke/trouble.nvim",
-		-- cmd = "TroubleToggle",
-	},
+require("auto-session").setup {
+	log_level = "error",
+	auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
 }
-
 require 'hop'.setup()
 require('numb').setup {
 	show_numbers = true,
@@ -125,11 +128,21 @@ require('numb').setup {
 require("statuscol").setup {
 	setopt = true,
 }
-require('gitsigns').setup()
+-- require('gitsigns').setup()
 require('trouble').setup()
-vim.g.gitblame_enabled = 0
+-- require('nvim-tree').setup({ 
+-- 	view = { 
+-- 		relativenumber = true,
+-- 		width = 30
+-- 	},
+-- 	filters = {
+-- 		dotfiles = true
+-- 	}
+-- })
 
--- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
+vim.g.gitblame_enabled = 1
+
+-- -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "zsh",
 	callback = function()
@@ -138,6 +151,47 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+lvim.builtin.treesitter.ensure_installed = {
+	"javascript",
+	"typescript",
+	"php",
+	"css",
+	"json",
+	"bash",
+	"go",
+	"gomod",
+}
 
--- -- todo
--- number toggle on insert (nonrelative) and normal mode (relative number)
+lvim.format_on_save.enabled = true
+lvim.format_on_save = {
+	pattern = { "*.go", "*.php", "*.js", "*.ts", "*.svelte", "*.html", "*.md" },
+}
+
+
+-- todo
+-- olexsmir/gopher.nvim
+-- leoluz/nvim-dap-go
+--
+
+lvim.lsp.installer.setup.ensure_installed = {
+	"sumneko_lua",
+	"jsonls",
+	"html",
+	"cssls",
+	"emmet_ls",
+	"tsserver",
+	"intelephense",
+	"tailwindcss",
+	"gopls",
+	"typescript-language-server",
+	"docker-compose-language-server",
+	"dockerfile-language-server",
+	"nginx-language-server",
+	"svelte-language-server",
+}
+
+require("lvim.lsp.manager").setup("emmet_ls")
+require("lvim.lsp.manager").setup("tailwindcss")
+require("lvim.lsp.manager").setup("intelephense")
+require("lvim.lsp.manager").setup("svelte-language-server")
+require("lvim.lsp.manager").setup("gopls")

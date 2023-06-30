@@ -14,7 +14,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PATH=$PATH:$HOME/Workspace/go/bin:$HOME/./config/scripts:/usr/lib/jvm/default-runtime/bin/java
+export PATH=$PATH:$HOME/Workspace/go/bin:$HOME/./config/scripts:/usr/lib/jvm/default-runtime/bin/java:/home/shedder/.local/bin
 export GOROOT="/usr/lib/go"
 export GOPATH=$HOME/Workspace/go
 export VDPAU_DRIVER=va_gl
@@ -72,9 +72,12 @@ alias cat='bat'
 alias f='fuck'
 alias mv='mv -i'
 alias xclip='xclip -selection clipboard'
-alias restart-plasma='kquitapp5 plasmashell && kstart5 plasmashell'
+alias restart-plasma='kquitapp5 plasmashell && kstart5 plasmashell &> /dev/null'
 alias restart-eDP1='sudo xrandr --output eDP1 --off; sleep 1; sudo xrandr --output eDP1 --auto --brightness 0.7'
 alias l='k -Ah'
+alias youtube-dl='yt-dlp'
+alias open='kde-open'
+alias kali='docker run -ti --rm -e DISPLAY=:0 -p 4445:4445 -p 16801:16801 --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --name parrot --device=/dev/net/tun kali'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
